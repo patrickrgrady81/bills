@@ -1,19 +1,7 @@
 import { useState, useRef, useReducer } from 'react'; 
-import { Button, Modal, Form, Row, Col, ListGroup } from 'react-bootstrap';
+import { Button, Modal, Form, Row, Col, Card, Container } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
-
-const ACTIONS = {
-  ADD_BILL: "addBill"
-}
-
-function billReducer(state, action) {
-  switch (action.type) {
-    case "addBill":
-      return [...state, {name: action.payload.name, amount: action.payload.amount}];
-    default:
-      return state;
-  }
-}
+import billReducer, { ACTIONS } from './reducers/billReducer';
 
 function App() {
   const name = useRef("")
@@ -35,10 +23,15 @@ function App() {
   return (
     <>
       <Button onClick={() => handleModal()}>New Bill</Button>
-      <ListGroup>
-      {bills.map((bill)=>{
-        return <ListGroup.Item key={uuidv4()}>{bill.name} - {bill.amount}</ListGroup.Item>
-      })}</ListGroup>
+      <Container className="d-flex justify-content-center gap-2">
+        {bills.map((bill)=>{
+          return (
+            <Card className="d-flex w-25 justify-content-center align-items-center" key={uuidv4()}>
+              <Card.Title className="border-bottom pt-1 text-primary">{bill.name}</Card.Title>
+              <Card.Subtitle className="mt-2 text-muted pb-3">{bill.amount}</Card.Subtitle>
+            </Card>
+          )})}
+        </Container>
 
       { isModalOpen &&
       <Modal.Dialog>
