@@ -5,11 +5,11 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={<Dashboard />} />
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
     </>
   );
 }
