@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 
 function App() {
@@ -6,7 +6,11 @@ function App() {
 
   return (
     <>
-      <Dashboard />
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
     </>
   );
 }
